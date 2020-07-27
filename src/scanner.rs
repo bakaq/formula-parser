@@ -47,6 +47,7 @@ pub fn scan(input: &str) -> Vec<Token> {
                         value: None,
                     });
                 }
+            ' ' | '\n' | '\t' | '\r' => {/* Do nothing */}
             c   => {
                 if c.is_digit(10) {
                     let mut j = i;
