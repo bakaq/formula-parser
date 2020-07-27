@@ -2,6 +2,7 @@ use std::io;
 use std::io::Write;
 
 mod scanner;
+mod parser;
 
 fn main() {
     print!("Enter the formula: ");
@@ -12,5 +13,7 @@ fn main() {
 
     let token_stream = scanner::scan(&input.trim());
     
-    println!("{:#?}", token_stream);
+    let (ast, _) = parser::binexpr(&token_stream, 0);
+    
+    println!("{:#?}", ast);
 }

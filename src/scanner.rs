@@ -1,17 +1,25 @@
-#[derive(Debug)]
-enum TokenType {
+#[derive(Debug, Clone, Copy)]
+pub enum TokenType {
     EOF, Plus, Minus, Star, Slash, IntLiteral
 }
 
-#[derive(Debug)]
-enum TokenValue {
+pub fn op_prec(token_type: &TokenType) -> u32 {
+    match token_type {
+        TokenType::Plus | TokenType::Minus => 10,
+        TokenType::Star | TokenType::Slash => 20,
+        _ => 0
+    }
+}
+
+#[derive(Debug,Clone,Copy)]
+pub enum TokenValue {
     Int(u32),
 }
 
-#[derive(Debug)]
+#[derive(Debug,Clone,Copy)]
 pub struct Token {
-    token: TokenType,
-    value: Option<TokenValue>,
+    pub token: TokenType,
+    pub value: Option<TokenValue>,
 }
 
 
@@ -19,7 +27,6 @@ pub fn scan(input: &str) -> Vec<Token> {
     let input: Vec<char> = input.chars().collect();
     let mut token_stream = Vec::new();
 
-    println!("{:#?}", input);
     let mut i = 0;
     while i < input.len() {
         match input[i] {
