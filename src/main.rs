@@ -3,6 +3,7 @@ use std::io::Write;
 
 mod scanner;
 mod parser;
+mod interpreter;
 
 fn main() {
     print!("Enter the formula: ");
@@ -10,10 +11,6 @@ fn main() {
 
     let mut input = String::new();
     io::stdin().read_line(&mut input).unwrap();
-
-    let token_stream = scanner::scan(&input.trim());
     
-    let (ast, _) = parser::binexpr(&token_stream, 0);
-    
-    println!("{:#?}", ast);
+    println!("{}", interpreter::interpret(&input));
 }

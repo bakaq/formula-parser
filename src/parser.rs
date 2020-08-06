@@ -12,10 +12,10 @@ pub enum ASTvalue {
 }
 
 pub struct ASTnode {
-    op: ASTtype,
-    left: Option<Box<ASTnode>>,
-    right: Option<Box<ASTnode>>,
-    value: Option<ASTvalue>,
+    pub op: ASTtype,
+    pub left: Option<Box<ASTnode>>,
+    pub right: Option<Box<ASTnode>>,
+    pub value: Option<ASTvalue>,
 }
 
 impl fmt::Debug for ASTnode {
